@@ -6,6 +6,8 @@ import Login from '../Screens/Login';
 import Demo from '../Components/Demo';
 import MyDrawer from './Drawer';
 import Initial from '../Screens/Initial';
+import AssessmentChecklist from '../Screens/AssessmentChecklist';
+import AddNewCat from '../Components/AddNewCat';
 
 const Routes = () => {
   const Stack = createNativeStackNavigator();
@@ -16,6 +18,7 @@ const Routes = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="MyDrawer" component={MyDrawer} />
         <Stack.Screen name="Dashboard" component={MyDrawer} />
+        <Stack.Screen name="AddNewCat" component={AddNewCat} />
       </Stack.Navigator>
     </NavigationContainer>
   );

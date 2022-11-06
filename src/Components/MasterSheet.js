@@ -1,68 +1,44 @@
 /* eslint-disable react-native/no-inline-styles */
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
-import React, { useEffect } from 'react';
-import Functions from './Functions';
-import FastImage from 'react-native-fast-image';
-import HeaderComp from '../Components/HeaderComp';
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import React from 'react';
 import ActionSheet from 'react-native-actions-sheet';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Feather';
 import Icon1 from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import Icon3 from 'react-native-vector-icons/FontAwesome5';
-import MasterSheet from '../Components/MasterSheet';
 
-const Masters = ({ navigation }) => {
-  const width = Dimensions.get('screen').width;
-  const actionSheetRef = React.useRef(null);
+const width = Dimensions.get('screen').width;
 
-  useEffect(() => {
-    setTimeout(() => {
-      actionSheetRef?.current.show();
-    }, 500);
-  }, []);
-
+const MasterSheet = ({ action, nav }) => {
   return (
-    <>
-      <View className="px-5 h-[75px] bg-[#FFFFFF]">
-        <HeaderComp
-          name={'Master'}
-          logo={true}
-          nav={navigation}
-          icons={true}
-          action={actionSheetRef}
-        />
-      </View>
-      <FastImage source={require('../Assets/Image/login_background.gif')} className="flex-1">
-        <View className="h-[100%] justify-center items-center flex-row space-x-5">
-          <Text className="text-[30px] text-black font-bold tracking-wider">Masters</Text>
-          <TouchableOpacity onPress={() => actionSheetRef?.current.show()}>
-            <Icon name={'menu-fold'} color={'black'} size={25} />
-          </TouchableOpacity>
-        </View>
-      </FastImage>
-      {/* <ActionSheet
+    <View>
+      <ActionSheet
         containerStyle={{
           borderTopLeftRadius: 25,
           borderTopRightRadius: 25
         }}
-        ref={actionSheetRef}>
+        ref={action}>
         <View className=" items-center mx-[24px] ">
           <View className="h-[auto] ml-5 my-5 space-y-5" style={{ width: width }}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('AssessmentChecklist')}
+              onPress={() => nav.navigate('AssessmentChecklist')}
               className="flex-row space-x-5 items-center">
               <Icon name={'check-circle'} size={25} color={'green'} />
               <Text className="text-[#212121] font-SemiBold text-[20px] tracking-[0.2px]">
                 Assessment Checklist
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex-row space-x-5 items-center">
+            <TouchableOpacity
+              //   onPress={() => nav.navigate('AssessmentChecklist')}
+              className="flex-row space-x-5 items-center">
               <Icon1 name={'users'} size={25} color={'#212121'} />
               <Text className="text-[#212121] font-SemiBold text-[20px] tracking-[0.2px]">
                 Employees
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex-row space-x-5 items-center">
+            <TouchableOpacity
+              onPress={() => nav.navigate('Functions')}
+              className="flex-row space-x-5 items-center">
               <Icon1 name={'suitcase'} size={25} color={'#212121'} />
               <Text className="text-[#212121] font-SemiBold text-[20px] tracking-[0.2px]">
                 Functions
@@ -112,10 +88,9 @@ const Masters = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
-      </ActionSheet> */}
-      <MasterSheet nav={navigation} action={actionSheetRef} />
-    </>
+      </ActionSheet>
+    </View>
   );
 };
 
-export default Masters;
+export default MasterSheet;

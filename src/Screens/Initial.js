@@ -1,13 +1,16 @@
-import { View, Text, Dimensions } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Initial = ({ navigation }) => {
   const height = Dimensions.get('screen').height;
   const width = Dimensions.get('screen').width;
   return (
-    <FastImage source={require('../Assets/Image/background.png')} className="flex-1">
+    <FastImage
+      source={require('../Assets/Image/initial1.gif')}
+      resizeMode="contain"
+      className="flex-1">
       <View className="flex-1 justify-end">
         <View
           className="justify-center items-center h-[40%] "
