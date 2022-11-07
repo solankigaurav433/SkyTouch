@@ -6,7 +6,8 @@ import FastImage from 'react-native-fast-image';
 import HeaderComp from '../Components/HeaderComp';
 import EmptyComponent from '../Components/EmptyComponent';
 // import ActionSheet from 'react-native-actions-sheet';
-// import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Feather';
+import Icon1 from 'react-native-vector-icons/AntDesign';
 // import Icon1 from 'react-native-vector-icons/FontAwesome';
 // import Icon2 from 'react-native-vector-icons/MaterialIcons';
 // import Icon3 from 'react-native-vector-icons/FontAwesome5';
@@ -17,7 +18,7 @@ const width = Dimensions.get('screen').width;
 const data = [
   {
     id: 1,
-    name: 'ABC',
+    name: 'ABC ABC',
     description: 'ABC Description'
   },
   {
@@ -47,27 +48,32 @@ const renderItem = ({ item }) => {
   return (
     <View
       className="bg-[#FFFFFF] rounded-[16px] px-3 py-3 my-2"
-      style={{ borderLeftColor: 'grey', borderLeftWidth: 6 }}>
-      <View className="flex-row justify-around pb-1">
+      style={{
+        borderLeftColor: 'grey',
+        borderLeftWidth: 2,
+        borderRightColor: 'grey',
+        borderRightWidth: 2,
+        elevation: 4
+      }}>
+      <View className="flex-row justify-start pb-1">
         <Text className="font-bold text-black text-lg">Checklist Name</Text>
-        <Text className="font-bold text-black text-lg">Designation</Text>
+        <Text className="font-bold text-black text-lg flex-1 text-center ">Designation</Text>
       </View>
-      <View className="flex-row justify-around py-1">
+      <View className="flex-row justify-between py-1 items-center">
         <Text className="font-semibold text-black text-md">{item.name}</Text>
-        <Text className="font-semibold text-black text-md">{item.description}</Text>
+        <Text className="font-semibold text-black text-md w-[45%] text-justify ">
+          {item.description}
+        </Text>
       </View>
       <View className="border-[0.2px] border-gray-300 my-2" />
       <View className="flex-row justify-between">
         <View>
-          {/* <Text className="text-center pb-2 text-black font-medium">Action</Text> */}
           <View className="flex-row space-x-3">
-            <TouchableOpacity className="bg-blue-500 items-center justify-center p-1 rounded-md">
-              <Text className="text-white text-[10px] w-[30px] text-center font-medium">Edit</Text>
+            <TouchableOpacity className="items-center justify-center">
+              <Icon name={'edit'} size={21} color={'black'} />
             </TouchableOpacity>
-            <TouchableOpacity className="bg-red-500 items-center justify-center p-1 rounded-md">
-              <Text className="text-white text-[10px] w-[30px] text-center font-medium">
-                Delete
-              </Text>
+            <TouchableOpacity className=" items-center justify-center">
+              <Icon1 name={'delete'} size={21} color={'black'} />
             </TouchableOpacity>
           </View>
         </View>
@@ -78,14 +84,19 @@ const renderItem = ({ item }) => {
 
 const AssessmentChecklist = ({ navigation }) => {
   const Header = () => (
-    <View className=" flex-row justify-end space-x-2">
-      <TouchableOpacity className="bg-blue-500 items-center justify-center p-2 rounded-md">
-        <Text className="text-white">Add New</Text>
+    <View className=" flex-row justify-end space-x-2 mt-[2px] mx-[2px]">
+      <TouchableOpacity
+        style={{ elevation: 4, borderColor: 'green', borderWidth: 1 }}
+        className="bg-[#fafafa] space-x-1 items-center flex-row justify-center py-1 px-2 rounded-[16px]">
+        <Icon1 name={'adduser'} size={21} color={'black'} />
+        <Text className="text-black font-semibold">Add New</Text>
       </TouchableOpacity>
       <TouchableOpacity
+        style={{ elevation: 4, borderColor: 'red', borderWidth: 1 }}
         onPress={() => navigation.replace('MasterPage')}
-        className="bg-red-500 items-center justify-center p-2 rounded-md">
-        <Text className="text-white">Close</Text>
+        className="bg-[#fafafa] space-x-1 items-center flex-row justify-center py-1 px-2 rounded-[16px]">
+        <Icon1 name={'closecircle'} size={20} color={'black'} />
+        <Text className="text-black  font-semibol">Close</Text>
       </TouchableOpacity>
     </View>
   );
@@ -101,19 +112,19 @@ const AssessmentChecklist = ({ navigation }) => {
           action={actionSheetRef}
         />
       </View>
-      <FastImage source={require('../Assets/Image/fbg1.jpg')} resizeMode="cover">
-        <SafeAreaView className="mx-4 my-5 h-[100%]">
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
-            data={data}
-            renderItem={renderItem}
-            ListHeaderComponent={Header}
-            ListEmptyComponent={() => <EmptyComponent text="Nothing found" />}
-            ListFooterComponent={() => <View className="h-[150]" />}
-          />
-        </SafeAreaView>
-      </FastImage>
+      {/* <FastImage source={require('../Assets/Image/fbg1.jpg')} resizeMode="cover"> */}
+      <SafeAreaView className="mx-4 my-5 h-[100%]">
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+          data={data}
+          renderItem={renderItem}
+          ListHeaderComponent={Header}
+          ListEmptyComponent={() => <EmptyComponent text="Nothing found" />}
+          ListFooterComponent={() => <View className="h-[150]" />}
+        />
+      </SafeAreaView>
+      {/* </FastImage> */}
       {/* <ActionSheet
         containerStyle={{
           borderTopLeftRadius: 25,
